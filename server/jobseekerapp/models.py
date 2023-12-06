@@ -7,7 +7,7 @@ class JobSeeker(models.Model):
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=15)
     resume = models.FileField(upload_to='resumes/')
-    skills = models.CharField(max_length=255)
+    skills = models.CharField(max_length=600)
 
     def __str__(self):
         return self.name
@@ -22,10 +22,10 @@ class Employer(models.Model):
 
 class Job(models.Model):
     title = models.CharField(max_length=255)
-    company_name = models.CharField(max_length=100)
+    company_name = models.CharField(max_length=200)
     description = models.TextField()
     location = models.CharField(max_length=100)
-    skills_required = models.CharField(max_length=255)
+    skills_required = models.CharField(max_length=600)
     salary_range = models.CharField(max_length=50)
     employer = models.ForeignKey(Employer, on_delete=models.CASCADE, related_name='jobs')
 
