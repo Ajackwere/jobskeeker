@@ -5,4 +5,5 @@ from jobseekerapp import urls as jobseeker_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(jobseeker_urls)),
+    path('', include(jobseeker_urls)),
 ]

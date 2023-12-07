@@ -3,6 +3,8 @@ from rest_framework import viewsets
 from .models import JobSeeker, Employer, Job, JobApplication
 from .serializers import JobSeekerSerializer, EmployerSerializer, JobSerializer, JobApplicationSerializer
 
+def welcome_view(request):
+    return render(request, 'welcome.html')
 class JobSeekerViewSet(viewsets.ModelViewSet):
     queryset = JobSeeker.objects.all()
     serializer_class = JobSeekerSerializer
