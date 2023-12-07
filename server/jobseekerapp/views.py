@@ -1,8 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
 from rest_framework import viewsets
 from rest_framework.response import Response
 from .models import JobSeeker, Employer, Job, JobApplication
 from .serializers import JobSeekerSerializer, EmployerSerializer, JobSerializer, JobApplicationSerializer
+
 
 def welcome_view(request):
     return render(request, 'welcome.html')
@@ -57,3 +60,15 @@ class JobViewSet(viewsets.ModelViewSet):
 class JobApplicationViewSet(viewsets.ModelViewSet):
     queryset = JobApplication.objects.all()
     serializer_class = JobApplicationSerializer
+
+def register_user(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'registration/register_user.html', {'form': form})

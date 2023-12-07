@@ -1,9 +1,17 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+class CustomUser(AbstractUser):
+    USER_TYPES = [
+        ('employer', 'Employer'),
+        ('jobseeker', 'Job Seeker'),
+    ]
+
+    user_type = models.CharField(max_length=20, choices=USER_TYPES)
+
 class JobSeeker(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=15)
     resume = models.FileField(upload_to='resumes/')
@@ -13,8 +21,8 @@ class JobSeeker(models.Model):
         return self.name
 
 class Employer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    employer_name = models.CharField(max_length=100)
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    employer_name = models.CharField(max_length=200)
     email = models.EmailField(unique=True)
 
     def __str__(self):
