@@ -42,9 +42,21 @@ class Job(models.Model):
         return self.title
 
 class JobApplication(models.Model):
+    PENDING = 'Pending'
+    APPROVED = 'Approved'
+    REJECTED = 'Rejected'
+
+    STATUS_CHOICES = [
+        (PENDING, 'Pending'),
+        (APPROVED, 'Approved'),
+        (REJECTED, 'Rejected'),
+    ]
+
     job_seeker = models.ForeignKey(JobSeeker, on_delete=models.CASCADE, related_name='applications')
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
     application_date = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=PENDING)
+    
 
     def __str__(self):
-        return f"{self.job_seeker.name} applied for {self.job.title} on {self.application_date}"
+        return f"{self.job_seeker.name} applied for {self.job.title} on {self.application_date} (Status: {self.status})"

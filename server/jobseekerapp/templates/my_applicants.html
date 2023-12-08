@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Job Applicants</h2>
+
+  {% if job_applications %}
+    <ul>
+      {% for application in job_applications %}
+        <li>{{ application.job_seeker.user.username }} - {{ application.status }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No applicants found.</p>
+  {% endif %}
+{% endblock %}

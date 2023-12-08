@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>My Applications</h2>
+
+  {% if job_applications %}
+    <ul>
+      {% for application in job_applications %}
+        <li>{{ application.job.title }} - {{ application.status }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No applications found.</p>
+  {% endif %}
+{% endblock %}

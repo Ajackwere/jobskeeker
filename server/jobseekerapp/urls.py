@@ -17,6 +17,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('', welcome_view, name='welcome_view'),
     path('register/', register_user, name='register_user'),
-    path('login/', LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('my-applications/', JobApplicationViewSet.as_view({'get': 'my_applications'}), name='my-applications'),
+    path('jobs/<int:pk>/applicants/', JobViewSet.as_view({'get': 'my_applicants'}), name='job-applicants'),
     
 ]

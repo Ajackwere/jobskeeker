@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Jobseeker App{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>{% block header %}Jobseeker App{% endblock %}</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'welcome_view' %}">Home</a></li>
+                <li><a href="{% url 'jobseeker-list' %}">Job Seekers</a></li>
+                <li><a href="{% url 'employer-list' %}">Employers</a></li>
+                <li><a href="{% url 'job-list' %}">Jobs</a></li>
+                <li><a href="{% url 'applications' %}">Job Applications</a></li>
+                <li><a href="{% url 'register_user' %}">Register</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Jobseeker App. All rights reserved.</p>
+    </footer>
+</body>
+</html>
