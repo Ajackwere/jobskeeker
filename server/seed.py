@@ -22,7 +22,7 @@ JobApplication.objects.all().delete()
 employers = []
 job_seekers = []
 
-for _ in range(5):
+for _ in range(10):
     employer = User.objects.create_user(
         username=fake.user_name(),
         email=fake.email(),
@@ -37,7 +37,7 @@ for _ in range(5):
     )
     employers.append(employer)
 
-for _ in range(5):
+for _ in range(10):
     job_seeker = User.objects.create_user(
         username=fake.user_name(),
         email=fake.email(),
@@ -55,12 +55,12 @@ for _ in range(5):
     job_seekers.append(job_seeker)
 
 # Create jobs
-job_titles = ["Software Engineer", "Software Developer", "Data Scientist", "DevOps Engineer", "Data Analyst"]
-locations = ["City A", "City B", "City C"]
+job_titles = ["Software Engineer", "Software Developer", "Data Scientist", "DevOps Engineer", "Data Analyst", "Data Engineer", "Salesforce Engineer", "UI/UX Designer", "Cyber Security", "Quality Assurance", ]
+locations = ["Nairobi", "Beijing", "New York", "London", "Paris"]
 salary_ranges = ["50,000 - 80,000 Ksh", "70,000 - 100,000 Ksh", "90,000 - 120,000 Ksh"]
 job_types = ["Full-time", "Part-time", "Remote", "Hybrid"]
 
-for i in range(5):
+for i in range(10):
     employer = Employer.objects.get(user=employers[i])
     title = job_titles[i]
     company_name = employer.employer_name
