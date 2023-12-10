@@ -11,6 +11,14 @@ from faker import Faker
 fake = Faker()
 User = get_user_model()
 
+
+# Delete existing data
+Employer.objects.all().delete()
+JobSeeker.objects.all().delete()
+Job.objects.all().delete()
+JobApplication.objects.all().delete()
+
+
 employers = []
 job_seekers = []
 
