@@ -11,7 +11,7 @@ SECRET_KEY = 'django-insecure-m%o*x!d2qe%lz^3&oy+2d^f*akktqcf565ir_1^e!85n-nkz*0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['jobseeker-gwtu.onrender.com', 'www.jobseeker-gwtu.onrender.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['jobseeker-gwtu.onrender.com', 'www.jobseeker-gwtu.onrender.com', '127.0.0.1', 'localhost', '0.0.0.0']
 
 
 
