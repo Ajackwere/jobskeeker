@@ -1,0 +1,6 @@
+web:
+  - command: gunicorn server.wsgi:application --bind 0.0.0.0:$PORT
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: "server.settings"
+    port: 8000

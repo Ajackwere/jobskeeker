@@ -4,6 +4,7 @@ djangorestframework==3.14.0
 djangorestframework-swagger==0.2.2
 drf-yasg==1.21.7
 Faker==20.1.0
+gunicorn==21.2.0
 inflection==0.5.1
 packaging==23.2
 psycopg2==2.9.9
