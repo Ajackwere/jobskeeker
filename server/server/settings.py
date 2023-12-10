@@ -9,9 +9,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-m%o*x!d2qe%lz^3&oy+2d^f*akktqcf565ir_1^e!85n-nkz*0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['jobseeker-gwtu.onrender.com', 'www.jobseeker-gwtu.onrender.com']
+ALLOWED_HOSTS = ['jobseeker-gwtu.onrender.com', 'www.jobseeker-gwtu.onrender.com', '127.0.0.1', 'localhost']
 
 
 
@@ -73,11 +73,11 @@ DATABASES = {
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': os.getenv('DB_HOST'),
-        # 'PORT': os.getenv('DB_PORT'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
 
-PORT = int(os.environ.get('PORT', 8000))
+# PORT = int(os.environ.get('PORT', 8000))
 
 
 # Password validation
