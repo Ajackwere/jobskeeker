@@ -73,11 +73,11 @@ DATABASES = {
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT'),
+        # 'PORT': os.getenv('DB_PORT'),
     }
 }
 
-# PORT = int(os.environ.get('PORT', 8000))
+PORT = int(os.environ.get('PORT', 8000))
 
 
 # Password validation
