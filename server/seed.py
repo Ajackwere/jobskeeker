@@ -50,6 +50,7 @@ for _ in range(5):
 job_titles = ["Software Engineer", "Software Developer", "Data Scientist", "DevOps Engineer", "Data Analyst"]
 locations = ["City A", "City B", "City C"]
 salary_ranges = ["50,000 - 80,000 Ksh", "70,000 - 100,000 Ksh", "90,000 - 120,000 Ksh"]
+job_types = ["Full-time", "Part-time", "Remote", "Hybrid"]
 
 for i in range(5):
     employer = Employer.objects.get(user=employers[i])
@@ -57,6 +58,8 @@ for i in range(5):
     company_name = employer.employer_name
     description = fake.text()
     location = fake.random_element(locations)
+    date_posted = fake.date_time_this_decade()
+    job_type = fake.random_element(job_types)
     skills_required = " ".join(fake.words(5))
     salary_range = fake.random_element(salary_ranges)
 
@@ -65,6 +68,8 @@ for i in range(5):
         company_name=company_name,
         description=description,
         location=location,
+        date_posted=date_posted,
+        job_type=job_type,
         skills_required=skills_required,
         salary_range=salary_range,
         employer=employer,

@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils import timezone
 
 class CustomUser(AbstractUser):
     USER_TYPES = [
@@ -34,6 +35,8 @@ class Job(models.Model):
     company_name = models.CharField(max_length=200)
     description = models.TextField()
     location = models.CharField(max_length=100)
+    date_posted = models.DateTimeField(default=timezone.now, blank=True)
+    job_type = models.CharField(max_length=100, blank=True, null=True)
     skills_required = models.CharField(max_length=600)
     salary_range = models.CharField(max_length=50)
     employer = models.ForeignKey(Employer, on_delete=models.CASCADE, related_name='jobs')
