@@ -14,7 +14,7 @@ def welcome_view(request):
     return render(request, 'welcome.html')
 
 def profile(request):
-    return render(request, 'profile.html')
+    return render(request, 'profile.html', {'user': request.user})
 
 class JobSeekerViewSet(viewsets.ModelViewSet):
     queryset = JobSeeker.objects.all()
