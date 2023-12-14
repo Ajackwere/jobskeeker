@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -7,10 +6,16 @@ from .models import JobSeeker, Employer, Job, JobApplication
 from .serializers import JobSeekerSerializer, EmployerSerializer, JobSerializer, JobApplicationSerializer
 from rest_framework.decorators import action
 from .forms import CustomUserCreationForm
+from django.contrib.auth.decorators import login_required
+
 
 
 def welcome_view(request):
     return render(request, 'welcome.html')
+
+def profile(request):
+    return render(request, 'profile.html')
+
 class JobSeekerViewSet(viewsets.ModelViewSet):
     queryset = JobSeeker.objects.all()
     serializer_class = JobSeekerSerializer
