@@ -12,12 +12,12 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Your API",
+        title="Jobseeker API",
         default_version='v1',
-        description="Your API description",
-        terms_of_service="https://www.yourapp.com/terms/",
-        contact=openapi.Contact(email="contact@yourapp.com"),
-        license=openapi.License(name="Your License"),
+        description="This API contains the endpoints for jobseeker app including /my_applications, /my_applicants, /jobs /employers, /jobseeker, /login, /logout , and /register ",
+        terms_of_service="https://www.github.com/ajackwere/",
+        contact=openapi.Contact(email="austinewere59@gmail.com"),
+        license=openapi.License(name="MIT License"),
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),

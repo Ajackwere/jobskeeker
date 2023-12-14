@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from .models import JobSeeker, Employer, Job, JobApplication
 from .serializers import JobSeekerSerializer, EmployerSerializer, JobSerializer, JobApplicationSerializer
 from rest_framework.decorators import action
+from .forms import CustomUserCreationForm
 
 
 def welcome_view(request):
@@ -99,12 +100,12 @@ class JobApplicationViewSet(viewsets.ModelViewSet):
 
 def register_user(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
             return redirect('login')
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
 
     return render(request, 'registration/register_user.html', {'form': form})
