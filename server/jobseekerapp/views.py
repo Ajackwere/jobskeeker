@@ -13,6 +13,7 @@ from django.contrib.auth.decorators import login_required
 def welcome_view(request):
     return render(request, 'welcome.html')
 
+@login_required
 def profile(request):
     return render(request, 'profile.html', {'user': request.user})
 
