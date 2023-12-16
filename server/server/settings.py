@@ -12,7 +12,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = ['jobseeker-gwtu.onrender.com', 'https://jobseeker-gwtu.onrender.com/api/', '127.0.0.1', 'https://jobseeker-gwtu.onrender.com/api/jobs/', '0.0.0.0', 'https://jobseeker-gwtu.onrender.com/api/jobseekers/']
+ALLOWED_HOSTS = []
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 
