@@ -6,8 +6,8 @@
 #     port: 8000
 
 databases:
-  - name: my_database
-    databaseName: my_database
+  - name: jobseeker
+    databaseName: jobseeker
     user: austine
 
 services:
