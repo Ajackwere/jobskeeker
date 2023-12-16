@@ -15,7 +15,7 @@ services:
     name: jobseeker
     runtime: python
     buildCommand: "./build.sh"
-    startCommand: "gunicorn mysite.wsgi:application"
+    startCommand: "gunicorn server.wsgi:application"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
