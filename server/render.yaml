@@ -1,6 +1,27 @@
-web:
-  - command: gunicorn server.wsgi:application -b 0.0.0.0:$PORT
+# web:
+#   - command: gunicorn server.wsgi:application -b 0.0.0.0:$PORT
+#     envVars:
+#       - key: DJANGO_SETTINGS_MODULE
+#         value: "server.settings"
+#     port: 8000
+
+databases:
+  - name: my_database
+    databaseName: my_database
+    user: austine
+
+services:
+  - type: web
+    name: jobseeker
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn mysite.wsgi:application"
     envVars:
-      - key: DJANGO_SETTINGS_MODULE
-        value: "server.settings"
-    port: 8000
+      - key: DATABASE_URL
+        fromDatabase:
+          name: jobseeker
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
