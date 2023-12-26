@@ -1,15 +1,15 @@
 import './App.css';
-
-import LandingPage from './Components/LandingPage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LandingPage from './Components/common/LandingPage';
 
 
 function App() {
   return (
-    <div>
+    <BrowserRouter>
       <LandingPage />
 
       
-    </div>
+    </BrowserRouter>
   );
 }
 
