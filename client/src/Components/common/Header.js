@@ -7,7 +7,7 @@ const Header = () => {
       <nav>
         <div className="container mx-auto">
           <Link to="/" className="text-2xl font-bold">
-            Your App Name
+            Jobseeker App
           </Link>
         </div>
       </nav>
