@@ -1,38 +1,69 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPen, faLaptopCode, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { useSelector, useDispatch } from 'react-redux';
-import { logoutUser } from '../auth/logoutUser';
+import React from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPen,
+  faLaptopCode,
+  faSignInAlt,
+  faSignOutAlt,
+  faUserCircle,
+} from "@fortawesome/free-solid-svg-icons";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutUser } from "../auth/logoutUser";
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { useState } from "react";
 
 const Header = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
   const handleLogout = () => {
-    // Dispatch your logout action here
     dispatch(logoutUser());
   };
 
   const AuthButtons = () => {
     if (isAuthenticated) {
       return (
-        <button onClick={handleLogout} className="ml-auto">
-          <FontAwesomeIcon icon={faSignOutAlt} className="icon" />
-          Logout
-        </button>
+        <div className="flex items-center ml-auto">
+          <Link to="/profile" className="mr-4">
+            <button 
+            style={{
+              transition: 'color 0.3s, transform 0.3s',
+              ':hover': { color: 'whitesmoke' },
+              ':active': { color: 'whitesmoke', transform: 'scale(0.95)' },
+            }}
+            >
+              <FontAwesomeIcon icon={faUserCircle} className="icon" />
+              Profile
+            </button>
+          </Link>
+          <button
+            onClick={handleLogout}
+            style={{
+              transition: 'color 0.3s, transform 0.3s',
+              ':hover': { color: 'whitesmoke' },
+              ':active': { color: 'whitesmoke', transform: 'scale(0.95)' },
+            }}
+          >
+            <FontAwesomeIcon icon={faSignOutAlt} className="icon" />
+            Logout
+          </button>
+        </div>
       );
     } else {
       return (
-        <div className="flex items-center ml-auto">
+        <div className="flex items-center ml-auto mb-2 mt-2 transition duration-150 ease-in-out hover:text-white-600 focus:text-white-800">
           <Link to="/login" className="mr-4">
-            <button>
+            <button
+            >
               <FontAwesomeIcon icon={faSignInAlt} className="icon" />
-              Login
+              <span className="ml-2">Login</span>
             </button>
-          </Link>
-          <Link to="/register">
-            <span className="text-gray-400">Not a user? Sign Up</span>
           </Link>
         </div>
       );
@@ -40,14 +71,19 @@ const Header = () => {
   };
 
   const JobHubLogo = () => (
-    <div className="flex flex-col items-center">
-      <div className="bg-red-400 rounded-full p-2">
-        <div className="bg-white rounded-full p-2">
-          <FontAwesomeIcon icon={faPen} className="icon text-red-400" size="lg" />
-          <FontAwesomeIcon icon={faLaptopCode} className="icon text-red-400 ml-2" size="lg" />
-        </div>
-        <div className="mt-2">
-          <span className="text-gray-400 font-bold text-lg">Job Hub</span>
+    <div className="flex flex-col items-center mr-2 md:ml-0">
+      <div className="bg-red-400 rounded-full p-1 ">
+        <div className="bg-white rounded-full p-1">
+          <FontAwesomeIcon
+            icon={faPen}
+            className="icon text-red-400"
+            size="lg"
+          />
+          <FontAwesomeIcon
+            icon={faLaptopCode}
+            className="icon text-red-400 ml-2"
+            size="lg"
+          />
         </div>
       </div>
     </div>
@@ -55,17 +91,24 @@ const Header = () => {
 
   return (
     <header className="bg-gray-300 text-black p-4">
-      <nav className="container mx-6 flex items-center">
+      <nav className="container mx-6 flex items-center justify-between md:justify-start">
         <JobHubLogo />
-        <Link to="/" className="text-2xl font-bold ml-4">
-          Home
-        </Link>
-        <Link to="/jobs" className="ml-4">
-          Jobs
-        </Link>
-        <Link to="/careeradvice" className="ml-4">
-          Career Guide
-        </Link>
+        <div className="md:hidden">
+          <button className="block focus:outline-none focus:ring-2 focus:ring-whitesmoke-300 focus:ring-opacity-75" onClick={toggleMenu}>
+            <FontAwesomeIcon icon={faBars} className="text-gray-600" />
+          </button>
+        </div>
+        <ul className={`hidden md:flex items-center space-x-4 ml-1 mr-1 ${isOpen ? 'block' : 'hidden'}`}>
+          <Link to="/" className="text-gray-600 font-semibold hover:text-whitesmoke-600 focus:text-whitesmoke-900">
+            Home
+          </Link>
+          <Link to="/jobs" className="text-gray-600 font-semibold hover:text-whitesmoke-600 focus:text-whitesmoke-900">
+            Jobs
+          </Link>
+          <Link to="/careeradvice" className="text-gray-600 font-semibold hover:text-whitesmoke-600 focus:text-whitesmoke-900">
+            Career Guide
+          </Link>
+        </ul>
         <AuthButtons />
       </nav>
     </header>
