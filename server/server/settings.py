@@ -11,15 +11,11 @@ SECRET_KEY = config('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = 'RENDER' not in os.environ
+DEBUG = os.environ.get("DEBUG", "False").lower == "true"
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost',]
 
-# RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
-# if RENDER_EXTERNAL_HOSTNAME:
-#     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
 
@@ -86,7 +82,8 @@ DATABASES = {
     }
 }
 
-DATABASES['default']=dj_database_url.parse("postgres://jobhub_7vnv_user:VADSzxX4z1OqarVqfE2yeoXWcYfuFrJJ@dpg-cmrlbpa1hbls73fppub0-a.frankfurt-postgres.render.com/jobhub_7vnv")
+database_url = os.environ.get("DATABASE_URL")
+DATABASES['default']=dj_database_url.parse(database_url)
 
 
 
