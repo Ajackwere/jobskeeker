@@ -33,7 +33,7 @@ for _ in range(10):
         user=employer,
         employer_name=fake.company(),
         email=employer.email,
-        phone_number=fake.phone_number(),
+        phone_number=fake.numerify(text='###########'),
     )
     employers.append(employer)
 
@@ -48,7 +48,7 @@ for _ in range(10):
         user=job_seeker,
         name=fake.name(),
         email=job_seeker.email,
-        phone_number=fake.phone_number(),
+        phone_number=fake.numerify(text='###########'),
         resume=fake.file_name(category="resume", extension="pdf"),
         skills=" ".join(fake.words(5)),
     )
